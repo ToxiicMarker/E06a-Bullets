@@ -1,4 +1,8 @@
 # E06a-Bullets
+    In this excercise I learned about how to destroy the penguin scum!... 
+    In this excercise I learned about how to create bullets, saw an example of a score system, and looked at collisions. I got further practice with working with velocities and believe that if I were to implement a penguin rebellion they would shoot bullets with a slower velocity as the narwhal's have superior arms. 
+
+
 Playing with bullet sprites:
 
 It's narwhals vs. penguins(?)! These natural enemies are locked in a battle; who will survive?

@@ -74,6 +74,8 @@ class Window(arcade.Window):
         self.enemy_list = arcade.SpriteList()
         self.player = Player()
         self.score = 0
+        
+        
 
     def setup(self):
         '''
@@ -88,6 +90,17 @@ class Window(arcade.Window):
     def update(self, delta_time):
         self.bullet_list.update()
         for e in self.enemy_list:
+            damage = arcade.check_for_collision_with_list(e, self.bullet_list)
+            for d in damage:
+                e.hp = e.hp - d.damage
+                d.kill()
+                if e.hp < 0:
+                    e.kill()
+                    self.score = self.score + KILL_SCORE
+                else:
+                    self.score = self.score + HIT_SCORE
+            
+            
             # check for collision
             # for every bullet that hits, decrease the hp and then see if it dies
             # increase the score
@@ -112,8 +125,11 @@ class Window(arcade.Window):
         if button == arcade.MOUSE_BUTTON_LEFT:
             #fire a bullet
             #the pass statement is a placeholder. Remove line 97 when you add your code
-            pass
-
+            x = self.player.center_x
+            y = self.player.center_y + 15
+            bullet = Bullet((x,y),(0,10),BULLET_DAMAGE)
+            self.bullet_list.append(bullet)
+            return
 def main():
     window = Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     window.setup()
